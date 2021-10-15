@@ -6,7 +6,7 @@
   "password": "postgres",
   "database": "money_tracker_dev",
   "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
-  "entities": ["./src/shared/modules/**/entities/*.ts"],
+  "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
   "cli": {
     "migrationsDir": "./src/shared/infra/typeorm/migrations"
   }
