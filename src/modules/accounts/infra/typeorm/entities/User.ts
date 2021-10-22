@@ -14,9 +14,12 @@ class User {
   @PrimaryColumn()
   id: string;
 
+  @Column()
+  community_id: string;
+
   @ManyToOne(() => Community)
   @JoinColumn({ name: "community_id" })
-  community_id: string;
+  community: Community;
 
   @Column()
   full_name: string;
