@@ -14,9 +14,12 @@ class Community {
   @PrimaryColumn()
   id: string;
 
+  @PrimaryColumn()
+  user_id: string;
+
   @OneToOne(() => User)
   @JoinColumn({ name: "creator_id" })
-  creator_id: string;
+  creator: User;
 
   @Column()
   name: string;
@@ -28,9 +31,7 @@ class Community {
   created_at: Date;
 
   constructor() {
-    if (!this.id) {
-      this.id = uuid4();
-    }
+    if (!this.id) this.id = uuid4();
   }
 }
 
