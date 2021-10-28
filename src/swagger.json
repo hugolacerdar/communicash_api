@@ -1,0 +1,202 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Communicash API Documentation",
+    "description": "The official documentation for the Communicash Platform, a personal project by Hugo Lacerda.",
+    "version": "1.0.0",
+    "contact": { "email": "hugolacerdar@gmail.com" }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User creation endpoint.",
+        "description": "An endpoint used for new users to sign up on the platform.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "full_name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "birth_date": {
+                    "type": "Date"
+                  }
+                },
+                "example": {
+                  "full_name": "Example Banana",
+                  "email": "banana@example.com",
+                  "password": "121212",
+                  "birth_date": "2012-12-12"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created."
+          },
+          "500": {
+            "description": "Email already in use."
+          }
+        }
+      }
+    },
+    "/users/profile": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get user profile endpoint.",
+        "description": "An endpoint used to get the current session user's profile information.",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK."
+          },
+          "400": {
+            "description": "User not found."
+          },
+          "500": {
+            "description": "Unauthorized."
+          }
+        }
+      },
+      "put": {
+        "tags": ["User"],
+        "summary": "Edit user profile endpoint.",
+        "description": "An endpoint used to edit the current session user's full name.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "full_name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "full_name": "Example Plantain"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "OK."
+          },
+          "400": {
+            "description": "User not found."
+          },
+          "500": {
+            "description": "Unauthorized."
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "Delete user account endpoint.",
+        "description": "An endpoint used to delete the current session user's account.",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "204": {
+            "description": "OK."
+          },
+          "400": {
+            "description": "User not found."
+          },
+          "500": {
+            "description": "Unauthorized."
+          }
+        }
+      }
+    },
+    "/auth/session": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User authentication endpoint.",
+        "description": "An endpoint used to create a session given valid credentials.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "banana@example.com",
+                  "password": "121212"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created."
+          },
+          "400": {
+            "description": "Incorrect email or password."
+          }
+        }
+      }
+    },
+    "/auth/refresh-token": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Refresh token endpoint.",
+        "description": "An endpoint used to refresh a valid token.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzQ4NTAxNjcsImV4cCI6MTYzNDg1MTA2Nywic3ViIjoiMmJkY2FkZjctMzhjYS00MzM4LWEyOTctY2QzMTQ1YjVkNGJiIn0.qj0BzkGP7gpkhAAELq5gcm_Vg946xmI3Xk1Btqx-CV4"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created."
+          },
+          "400": {
+            "description": "Refresh token doesn't exist."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
