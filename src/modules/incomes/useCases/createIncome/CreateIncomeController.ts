@@ -1,4 +1,4 @@
-import { IIncomesRepository } from "../../repositories/IIncomesRepositories";
+import { IIncomesRepository } from "../../repositories/IIncomesRepository";
 import { container, inject, injectable } from "tsyringe";
 import { ICreateIncomeDTO } from "../../dtos/ICreateIncomeDTO";
 import { NextFunction, Request, Response } from "express";

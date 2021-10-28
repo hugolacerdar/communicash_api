@@ -1,6 +1,6 @@
 import { ICreateIncomeDTO } from "../../../dtos/ICreateIncomeDTO";
 import { getRepository, Repository } from "typeorm";
-import { IIncomesRepository } from "../../../repositories/IIncomesRepositories";
+import { IIncomesRepository } from "../../../repositories/IIncomesRepository";
 import { Income } from "../entities/Income";
 
 class IncomesRepository implements IIncomesRepository {
@@ -17,7 +17,7 @@ class IncomesRepository implements IIncomesRepository {
     amount,
     community_id,
   }: ICreateIncomeDTO): Promise<void> {
-    const income = await this.repository.create({
+    const income = this.repository.create({
       id,
       user_id,
       description,

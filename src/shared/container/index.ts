@@ -9,9 +9,11 @@ import { IUsersTokensRepository } from "../../modules/accounts/repositories/IUse
 import { CommunitiesRepository } from "../../modules/communities/infra/typeorm/repositories/CommunitiesRepository";
 import { ICommunitiesRepository } from "../../modules/communities/repositories/ICommunitiesRepository";
 import { IncomesRepository } from "../../modules/incomes/infra/typeorm/repositories/IncomesRepository";
-import { IIncomesRepository } from "../../modules/incomes/repositories/IIncomesRepositories";
+import { IIncomesRepository } from "../../modules/incomes/repositories/IIncomesRepository";
 import { IExpensesCategoriesRepository } from "../../modules/expenses/repositories/IExpensesCategoriesRepository";
 import { ExpensesCategoriesRepository } from "../../modules/expenses/infra/typeorm/repositories/ExpensesCategoriesRepository";
+import { IExpensesRepository } from "../../modules/expenses/repositories/IExpensesRepository";
+import { ExpensesRepository } from "../../modules/expenses/infra/typeorm/repositories/ExpensesRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -36,4 +38,9 @@ container.registerSingleton<IIncomesRepository>(
 container.registerSingleton<IExpensesCategoriesRepository>(
   "ExpensesCategoriesRepository",
   ExpensesCategoriesRepository
+);
+
+container.registerSingleton<IExpensesRepository>(
+  "ExpensesRepository",
+  ExpensesRepository
 );
