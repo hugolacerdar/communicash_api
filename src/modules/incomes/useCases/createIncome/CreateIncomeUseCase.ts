@@ -9,8 +9,20 @@ class CreateIncomeUseCase {
     private incomesRepository: IIncomesRepository
   ) {}
 
-  async execute({ user_id, amount, description, date }: ICreateIncomeDTO) {
-    await this.incomesRepository.create({ user_id, amount, description, date });
+  async execute({
+    user_id,
+    amount,
+    description,
+    date,
+    community_id,
+  }: ICreateIncomeDTO) {
+    await this.incomesRepository.create({
+      user_id,
+      amount,
+      description,
+      date,
+      community_id,
+    });
   }
 }
 

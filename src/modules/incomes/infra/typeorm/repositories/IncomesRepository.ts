@@ -15,6 +15,7 @@ class IncomesRepository implements IIncomesRepository {
     description,
     date,
     amount,
+    community_id,
   }: ICreateIncomeDTO): Promise<void> {
     const income = await this.repository.create({
       id,
@@ -22,6 +23,7 @@ class IncomesRepository implements IIncomesRepository {
       description,
       date,
       amount,
+      community_id,
     });
 
     await this.repository.save(income);

@@ -11,12 +11,18 @@ class CreateIncomeController {
     next: NextFunction
   ): Promise<Response> {
     try {
-      const { user_id } = request;
+      const { user_id, community_id } = request;
       const { amount, description, date } = request.body;
 
       const createIncomeUseCase = container.resolve(CreateIncomeUseCase);
 
-      await createIncomeUseCase.execute({ user_id, amount, description, date });
+      await createIncomeUseCase.execute({
+        user_id,
+        community_id,
+        amount,
+        description,
+        date,
+      });
 
       return response.status(204).send();
     } catch (error) {
