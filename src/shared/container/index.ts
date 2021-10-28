@@ -10,6 +10,8 @@ import { CommunitiesRepository } from "../../modules/communities/infra/typeorm/r
 import { ICommunitiesRepository } from "../../modules/communities/repositories/ICommunitiesRepository";
 import { IncomesRepository } from "../../modules/incomes/infra/typeorm/repositories/IncomesRepository";
 import { IIncomesRepository } from "../../modules/incomes/repositories/IIncomesRepositories";
+import { IExpensesCategoriesRepository } from "../../modules/expenses/repositories/IExpensesCategoriesRepository";
+import { ExpensesCategoriesRepository } from "../../modules/expenses/infra/typeorm/repositories/ExpensesCategoriesRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -29,4 +31,9 @@ container.registerSingleton<ICommunitiesRepository>(
 container.registerSingleton<IIncomesRepository>(
   "IncomesRepository",
   IncomesRepository
+);
+
+container.registerSingleton<IExpensesCategoriesRepository>(
+  "ExpensesCategoriesRepository",
+  ExpensesCategoriesRepository
 );
