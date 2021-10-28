@@ -3,8 +3,10 @@ import { v4 as uuid4 } from "uuid";
 
 import { User } from "../../../../accounts/infra/typeorm/entities/User";
 import { Community } from "../../../../communities/infra/typeorm/entities/Community";
-@Entity("incomes")
-class Income {
+import { ExpenseCategory } from "./ExpenseCategory";
+
+@Entity("expenses")
+class Expense {
   @PrimaryColumn()
   id: string;
 
@@ -14,13 +16,20 @@ class Income {
   @Column()
   community_id: string;
 
-  @ManyToOne(() => User, (user) => user.incomes)
+  @Column()
+  category_id: string;
+
+  @ManyToOne(() => User, (user) => user.expenses)
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @ManyToOne(() => Community, (community) => community.incomes)
+  @ManyToOne(() => Community, (community) => community.expenses)
   @JoinColumn({ name: "community_id" })
   community: Community;
+
+  @ManyToOne(() => ExpenseCategory)
+  @JoinColumn({ name: "category_id" })
+  category: ExpenseCategory;
 
   @Column()
   date: Date;
@@ -36,4 +45,4 @@ class Income {
   }
 }
 
-export { Income };
+export { Expense };
