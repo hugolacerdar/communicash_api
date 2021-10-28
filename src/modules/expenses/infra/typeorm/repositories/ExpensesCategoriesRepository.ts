@@ -14,7 +14,7 @@ class ExpensesCategoriesRepository implements IExpensesCategoriesRepository {
     return category;
   }
   async getAll(): Promise<ExpenseCategory[]> {
-    const categories = this.repository.find();
+    const categories = await this.repository.find();
 
     return categories;
   }
