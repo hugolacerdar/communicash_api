@@ -3,7 +3,6 @@ import { Repository, getRepository } from "typeorm";
 import { ICreateCommunityDTO } from "../../../../communities/dtos/ICreateCommunityDTO";
 import { ICommunitiesRepository } from "../../../repositories/ICommunitiesRepository";
 import { Community } from "../entities/Community";
-import { UserMap } from "../../../../accounts/mappers/UserMapper";
 import { IFullCommunityResponse } from "../../../dtos/IFullCommunityResponse";
 
 class CommunitiesRepository implements ICommunitiesRepository {
@@ -17,7 +16,7 @@ class CommunitiesRepository implements ICommunitiesRepository {
     name,
     creator_id,
     description,
-  }: ICreateCommunityDTO): Promise<void> {
+  }: ICreateCommunityDTO): Promise<Community> {
     const community = this.repository.create({
       name,
       creator_id,
@@ -25,6 +24,8 @@ class CommunitiesRepository implements ICommunitiesRepository {
     });
 
     await this.repository.save(community);
+
+    return community;
   }
 
   findById(id: string): Promise<Community> {
