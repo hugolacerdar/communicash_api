@@ -15,6 +15,7 @@ expenseRoutes.post(
   checkIsCommunityMember,
   createExpenseController.handle
 );
+
 expenseRoutes.get(
   "/categories",
   checkAuthentication,
