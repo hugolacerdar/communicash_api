@@ -45,7 +45,7 @@
           "201": {
             "description": "Created."
           },
-          "500": {
+          "400": {
             "description": "Email already in use."
           }
         }
@@ -65,7 +65,7 @@
             "description": "User not found."
           },
           "500": {
-            "description": "Unauthorized."
+            "description": "Missing/Invalid token."
           }
         }
       },
@@ -99,7 +99,7 @@
             "description": "User not found."
           },
           "500": {
-            "description": "Unauthorized."
+            "description": "Missing/Invalid token."
           }
         }
       },
@@ -116,7 +116,7 @@
             "description": "User not found."
           },
           "500": {
-            "description": "Unauthorized."
+            "description": "Missing/Invalid token."
           }
         }
       }
@@ -185,6 +185,207 @@
           },
           "400": {
             "description": "Refresh token doesn't exist."
+          }
+        }
+      }
+    },
+    "/communities": {
+      "post": {
+        "tags": ["Community"],
+        "summary": "Community creation endpoint.",
+        "description": "An endpoint used for users to create an community.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Banana Community",
+                  "description": "The banana people community."
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created."
+          },
+          "400": {
+            "description": "User already part of a community."
+          },
+          "500": {
+            "description": "Missing/Invalid token."
+          }
+        }
+      },
+      "get": {
+        "tags": ["Community"],
+        "summary": "Get community with incomes and expenses endpoint.",
+        "description": "An endpoint used for users to get their community with all its expenses and incomes.",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK."
+          },
+          "400": {
+            "description": "Community not found."
+          },
+          "500": {
+            "description": "Missing/Invalid token."
+          }
+        }
+      }
+    },
+    "/communities/members": {
+      "post": {
+        "tags": ["Community"],
+        "summary": "Add community member endpoint.",
+        "description": "An endpoint used for users that already are part of a community to add another member.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_to_add_id": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "user_to_add_id": "536bc8f9-33ef-4544-99cc-2db8678cf008"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK."
+          },
+          "400": {
+            "description": "User already part of a community. | User don't exist."
+          },
+          "500": {
+            "description": "Missing/Invalid token."
+          }
+        }
+      }
+    },
+    "/incomes": {
+      "post": {
+        "tags": ["Income"],
+        "summary": "Income registration endpoint.",
+        "description": "An endpoint used for users that already are part of a community to register an income to the community.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "Date"
+                  }
+                },
+                "example": {
+                  "amount": 1000,
+                  "description": "Payment",
+                  "date": "2021-10-12 23:00:00"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created."
+          },
+          "400": {
+            "description": "User is not part of a community."
+          },
+          "500": {
+            "description": "Missing/Invalid token."
+          }
+        }
+      }
+    },
+    "/expenses": {
+      "post": {
+        "tags": ["Expense"],
+        "summary": "Expense registration endpoint.",
+        "description": "An endpoint used for users that already are part of a community to register an expense to the community.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category_id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "Date"
+                  }
+                },
+                "example": {
+                  "amount": 1000,
+                  "description": "Internet bills",
+                  "category_id": "3b51606f-a347-4a5e-ac71-d0c024990fbb",
+                  "date": "2021-10-10 17:00:00"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created."
+          },
+          "400": {
+            "description": "User is not part of a community."
+          },
+          "500": {
+            "description": "Missing/Invalid token."
+          }
+        }
+      }
+    },
+    "/expenses/categories": {
+      "get": {
+        "tags": ["Expense"],
+        "summary": "Get expenses categories endpoint.",
+        "description": "An endpoint used for users to get all existent expenses categories.",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK."
+          },
+          "500": {
+            "description": "Missing/Invalid token."
           }
         }
       }
