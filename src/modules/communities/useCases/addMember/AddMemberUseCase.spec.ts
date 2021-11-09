@@ -126,8 +126,14 @@ describe("Add Member", () => {
       id: community2Id,
     };
 
-    await inMemoryUsersRepository.create(user1Data);
-    await inMemoryUsersRepository.create(user2Data);
+    await inMemoryUsersRepository.create({
+      ...user1Data,
+      community_id: community1Id,
+    });
+    await inMemoryUsersRepository.create({
+      ...user2Data,
+      community_id: community2Id,
+    });
 
     await inMemoryCommunitiesRepository.create(community1Data);
     await inMemoryCommunitiesRepository.create(community2Data);
