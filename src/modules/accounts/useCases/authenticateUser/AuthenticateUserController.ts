@@ -20,7 +20,7 @@ class AuthenticateUserController {
         password,
       });
 
-      return response.json(authResponse);
+      return response.status(201).json(authResponse);
     } catch (error) {
       next(error);
     }
