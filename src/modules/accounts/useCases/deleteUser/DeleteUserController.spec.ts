@@ -52,7 +52,9 @@ describe("Delete User Controller", () => {
 
     const { token } = signInResponse.body;
 
-    connection.query(`DELETE FROM USERS WHERE EMAIL='banana2@example.com'`);
+    await connection.query(
+      `DELETE FROM USERS WHERE EMAIL='banana2@example.com'`
+    );
 
     const response = await request(app)
       .delete("/users/profile")

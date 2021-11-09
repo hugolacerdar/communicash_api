@@ -49,7 +49,9 @@ describe("Get User Profile Controller", () => {
 
     const { token } = signInResponse.body;
 
-    connection.query(`DELETE FROM USERS WHERE EMAIL='banana@example.com'`);
+    await connection.query(
+      `DELETE FROM USERS WHERE EMAIL='banana@example.com'`
+    );
 
     const response = await request(app)
       .get("/users/profile")
