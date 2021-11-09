@@ -11,6 +11,8 @@ class InMemoryUsersRepository implements IUsersRepository {
 
     Object.assign(user, data);
 
+    this.users = this.users.filter((user) => user.id !== data.id);
+
     this.users.push(user);
   }
 
