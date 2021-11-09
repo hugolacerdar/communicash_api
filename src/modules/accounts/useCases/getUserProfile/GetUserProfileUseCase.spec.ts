@@ -1,7 +1,6 @@
 import { v4 as uuid4 } from "uuid";
 
 import { InMemoryUsersRepository } from "../../repositories/inMemory/UsersRepository";
-import { AppError } from "../../../../shared/error/AppError";
 
 import { GetUserProfileUseCase } from "./GetUserProfileUseCase";
 
