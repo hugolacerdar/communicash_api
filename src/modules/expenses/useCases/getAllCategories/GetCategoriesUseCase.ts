@@ -1,5 +1,7 @@
-import { IExpensesCategoriesRepository } from "../../repositories/IExpensesCategoriesRepository";
+import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
+
+import { IExpensesCategoriesRepository } from "../../repositories/IExpensesCategoriesRepository";
 
 @injectable()
 class GetCategoriesUseCase {
