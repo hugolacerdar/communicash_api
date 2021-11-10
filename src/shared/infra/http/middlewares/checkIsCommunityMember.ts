@@ -14,6 +14,10 @@ export async function checkIsCommunityMember(
 
     const user = await usersRepository.findById(user_id);
 
+    if (!user) {
+      throw new AppError("User not found.");
+    }
+
     if (!user.community_id) {
       throw new AppError("No community association found.");
     }
