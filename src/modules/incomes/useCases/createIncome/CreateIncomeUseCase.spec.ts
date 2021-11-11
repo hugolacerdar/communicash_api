@@ -16,21 +16,8 @@ describe("Create Income", () => {
 
   it("should be able create an income", async () => {
     const userId = uuid4();
-    // const userData = {
-    //   full_name: "Banana Test",
-    //   email: "banana@test.com",
-    //   password: "12345",
-    //   birth_date: new Date("1999-12-12 00:00:00"),
-    //   id: userId,
-    // };
 
     const communityId = uuid4();
-    // const communityData = {
-    //   name: "Banana Community",
-    //   creator_id: userId,
-    //   description: "Banana fam community",
-    //   id: communityId,
-    // };
 
     await createIncomeUseCase.execute({
       user_id: userId,
