@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 
 import { ICommunitiesRepository } from "../../repositories/ICommunitiesRepository";
@@ -16,8 +18,6 @@ class GetIncomesAndExpensesUseCase {
     const community = await this.communitiesRepository.getIncomesAndExpenses(
       id
     );
-
-    if (!community) throw new AppError("Community not found.");
 
     const result = CommunityMap.toDTO(community);
 
