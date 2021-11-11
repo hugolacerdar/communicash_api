@@ -3,10 +3,8 @@ import request from "supertest";
 import { Connection } from "typeorm";
 import { v4 as uuid4 } from "uuid";
 
-import { User } from "../../../accounts/infra/typeorm/entities/User";
 import { app } from "../../../../shared/infra/http/app";
 import createConnection from "../../../../shared/infra/typeorm";
-import { Community } from "../../../communities/infra/typeorm/entities/Community";
 
 let connection: Connection;
 let communityId: string;
