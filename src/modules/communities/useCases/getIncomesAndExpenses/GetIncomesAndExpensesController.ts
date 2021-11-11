@@ -8,19 +8,15 @@ class GetIncomesAndExpensesController {
     response: Response,
     next: NextFunction
   ): Promise<Response> {
-    try {
-      const { community_id } = request;
+    const { community_id } = request;
 
-      const getAllIncomesAndExpenses = container.resolve(
-        GetIncomesAndExpensesUseCase
-      );
+    const getAllIncomesAndExpenses = container.resolve(
+      GetIncomesAndExpensesUseCase
+    );
 
-      const community = await getAllIncomesAndExpenses.execute(community_id);
+    const community = await getAllIncomesAndExpenses.execute(community_id);
 
-      return response.status(200).json(community);
-    } catch (error) {
-      next(error);
-    }
+    return response.json(community);
   }
 }
 
