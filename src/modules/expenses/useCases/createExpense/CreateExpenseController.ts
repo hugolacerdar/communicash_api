@@ -25,7 +25,7 @@ class CreateExpenseController {
         date,
       });
 
-      return response.status(204).send();
+      return response.status(201).send();
     } catch (error) {
       next(error);
     }
