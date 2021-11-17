@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
 import auth from "../../../../config/auth";
+import { AppError } from "../../../../shared/error/AppError";
 
 interface IPayload {
   sub: string;
@@ -14,7 +15,7 @@ export function checkAuthentication(
 ) {
   const authHeader = request.headers.authorization;
 
-  if (!authHeader) throw new Error("Missing token");
+  if (!authHeader) throw new AppError("Missing token", 401);
 
   const [_, token] = authHeader.split(" ");
 
@@ -25,6 +26,6 @@ export function checkAuthentication(
 
     next();
   } catch (error) {
-    throw new Error("Invalid token");
+    throw new AppError("Missing token", 401);
   }
 }
