@@ -1,6 +1,6 @@
-import redis from "redis";
+import * as redis from "redis";
 import { RateLimiterRedis } from "rate-limiter-flexible";
-import { AppError } from "shared/error/AppError";
+import { AppError } from "../../../error/AppError";
 import { NextFunction, Request, Response } from "express";
 
 const redisClient = redis.createClient({
