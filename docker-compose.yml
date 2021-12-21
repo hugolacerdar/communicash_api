@@ -1,13 +1,15 @@
+version: "3.9"
+
 services:
   database:
     image: postgres
-    container_name: databse
+    container_name: database_communicash
     restart: always
     ports:
-      - 5432:5432
+      - 65432:5432
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=b252fc5b24342d14cf04c1e6810dae5c
       - POSTGRES_DB=money_tracker_dev
     volumes:
       - pgdata:/data/postgres
