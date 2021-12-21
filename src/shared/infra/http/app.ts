@@ -4,13 +4,13 @@ import swaggerUi from "swagger-ui-express";
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 
+import rateLimiter from "../http/middlewares/rateLimiter";
 import createConnection from "../typeorm";
 import "../../container";
 import { AppError } from "../../error/AppError";
 
 import swaggerFile from "../../../swagger.json";
 import { router } from "./routes";
-import rateLimiter from "../http/middlewares/rateLimiter";
 
 createConnection();
 const app = express();

@@ -1,7 +1,9 @@
 import * as redis from "redis";
+import "dotenv/config";
 import { RateLimiterRedis } from "rate-limiter-flexible";
-import { AppError } from "../../../error/AppError";
 import { NextFunction, Request, Response } from "express";
+
+import { AppError } from "../../../error/AppError";
 
 const redisClient = redis.createClient({
   legacyMode: true,
@@ -14,7 +16,7 @@ const redisClient = redis.createClient({
 
 const limiter = new RateLimiterRedis({
   storeClient: redisClient,
-  keyPrefix: "rateLimiter",
+  keyPrefix: "middleware",
   points: 10,
   duration: 5,
 });
@@ -25,13 +27,12 @@ export default async function rateLimiter(
   next: NextFunction
 ): Promise<void> {
   try {
-    await redisClient.connect();
-
+    redisClient.connect();
     await limiter.consume(request.ip);
 
     return next();
-  } catch (e) {
-    throw new AppError("Too many requests", 429);
+  } catch (error) {
+    next(new AppError("Too many requests", 429));
   } finally {
     await redisClient.disconnect();
   }
