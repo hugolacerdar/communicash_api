@@ -6,19 +6,15 @@ interface IOpts {
   database: string;
 }
 
-export default async (host = "database"): Promise<Connection> => {
+export default async (): Promise<Connection> => {
   const options = await getConnectionOptions();
 
-  const newOptions = options as IOpts;
-
-  newOptions.host = process.env.NODE_ENV === "test" ? "localhost" : host;
-
   return createConnection(
-    Object.assign(newOptions, {
+    Object.assign(options, {
       database:
         process.env.NODE_ENV === "test"
           ? "money_tracker_test"
-          : newOptions.database,
+          : options.database,
     }) as AuroraDataApiConnectionOptions
   );
 };
