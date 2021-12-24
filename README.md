@@ -1,9 +1,12 @@
-<p align="center"> 
+<p align="center">
+</br>
+</br>
   <img src="https://res.cloudinary.com/dijxk2tpo/image/upload/v1640190132/readmes/logov1_c6mdmg.svg" width="400px"> 
+ </br>
 </p>
 
-# CommuniCash API
-<table>
+# 
+<table align="center">
 <tr>
 <td>
   A money tracker REST API to track incomes and expenses in community.
